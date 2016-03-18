@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<h:head>
+</h:head>
+<h:body>
+
+	<ui:composition template="/template/templateForm.xhtml">
+		
+			<ui:define name="titulo">
+				<h1 class="itemForm">#{messages['label.app.name']} - 
+					#{messages['label.resultados']}</h1>
+			</ui:define>
+			
+
+			<ui:define name="legenda">
+				<legend>
+					<h:outputText value="#{messages['label.incluir']}"
+						rendered="#{resultadoBean.resultadoBO.operacaoResultado == 'INCLUIR'}" />
+					<h:outputText value="#{messages['label.editar']}"
+						rendered="#{resultadoBean.resultadoBO.operacaoResultado == 'EDITAR'}" />
+				</legend>
+			</ui:define>
+
+			<ui:define name="campos">
+				<table>
+					<tr>
+
+						<td><h:outputLabel value="#{messages['label.data']}"
+								for="data" /></td>
+						<td><rich:calendar id="data" datePattern="dd/MM/yyyy"
+								label="#{messages['label.data']}"
+								value="#{resultadoBean.resultadoBO.resultadoSelecionado.data}">
+							</rich:calendar></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="#{messages['label.peso']}"
+								for="peso" /></td>
+						<td><h:inputText id="peso" label="#{messages['label.peso']}"
+								value="#{resultadoBean.resultadoBO.resultadoSelecionado.peso}">
+
+							</h:inputText></td>
+
+					</tr>
+					<tr>
+						<td><h:outputLabel value="#{messages['label.altura']}"
+								for="altura" /></td>
+						<td><h:inputText id="altura"
+								label="#{messages['label.altura']}"
+								value="#{resultadoBean.resultadoBO.resultadoSelecionado.altura}">
+
+							</h:inputText></td>
+
+					</tr>
+					<tr>
+						<td><h:outputLabel value="#{messages['label.gordura']}"
+								for="percentualGordura" /></td>
+						<td><h:inputText id="percentualGordura"
+								label="#{messages['label.gordura']}"
+								value="#{resultadoBean.resultadoBO.resultadoSelecionado.percentualGordura}">
+
+							</h:inputText></td>
+
+					</tr>
+
+
+				</table>
+			</ui:define>
+			<ui:define name="botoes">
+
+
+
+				<h:commandButton id="btnSalvar" value="#{messages['label.salvar']}"
+					action="#{resultadoBean.resultadoBO.salvarResultado}" rendered="true" />
+
+				<h:commandButton id="btnVoltar" value="#{messages['label.voltar']}"
+					action="#{resultadoBean.resultadoBO.voltarFormResultado}" rendered="true" />
+
+			</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

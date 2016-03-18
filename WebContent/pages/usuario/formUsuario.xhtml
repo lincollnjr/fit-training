@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="/template/templateForm.xhtml">
+
+		<ui:define name="titulo">
+			<a4j:outputPanel rendered="#{!autenticacaoBean.autenticacaoBO.logado}">
+				<h1 class="itemForm">#{messages['label.app.name']} -
+					#{messages['label.cadastrar']}</h1>
+			</a4j:outputPanel>
+			<a4j:outputPanel rendered="#{autenticacaoBean.autenticacaoBO.logado}">
+				<h1 class="itemForm">#{messages['label.app.name']} -
+					#{messages['label.dados']}</h1>
+			</a4j:outputPanel>
+
+		</ui:define>
+
+
+
+		<ui:define name="legenda">
+			<legend>
+				<h:outputText value="#{messages['label.cadastrar']}"></h:outputText>
+			</legend>
+		</ui:define>
+
+		<ui:define name="campos">
+			<table>
+				<tr>
+					<td><h:outputLabel
+							value="#{messages['label.autenticacao.tipo.conta']}" /></td>
+					<td><a4j:outputPanel rendered="#{!autenticacaoBean.autenticacaoBO.logado}">
+							<h:selectOneMenu style="width : 89%"
+								value="#{autenticacaoBean.autenticacaoBO.tipoConta}">
+								<f:selectItems value="#{autenticacaoBean.autenticacaoBO.tiposConta}" var="tipo"
+									itemLabel="#{tipo.descricao}" itemValue="#{tipo}" />
+
+							</h:selectOneMenu>
+						</a4j:outputPanel> <a4j:outputPanel rendered="#{autenticacaoBean.autenticacaoBO.logado}">
+							<h:inputText style="color:black;"
+								value="#{autenticacaoBean.autenticacaoBO.usuario.contaLogada.descricao}"
+								disabled="true"></h:inputText>
+						</a4j:outputPanel></td>
+				</tr>
+
+				<tr>
+
+					<td><h:outputLabel
+							value="#{messages['label.autenticacao.nome']}" for="nome" /></td>
+					<td><h:inputText id="nome"
+							label="#{messages['label.autenticacao.nome']}"
+							style="color:black;" value="#{autenticacaoBean.autenticacaoBO.nome}">
+
+						</h:inputText></td>
+				</tr>
+
+				<tr>
+
+					<td><h:outputLabel
+							value="#{messages['label.autenticacao.email']}" for="email" /></td>
+					<td><h:inputText id="email"
+							style="border: 1px solid #CCCCCC;  color:black;"
+							label="#{messages['label.autenticacao.email']}"
+							value="#{autenticacaoBean.autenticacaoBO.email}"
+							disabled="#{autenticacaoBean.autenticacaoBO.logado}">
+
+						</h:inputText></td>
+				</tr>
+
+				<tr>
+
+					<td><h:outputLabel
+							value="#{messages['label.autenticacao.senha']}" for="senha" /></td>
+					<td><h:inputSecret id="senha"
+							style="width:88%; color:black; border-radius:5px; border: 1px solid #CCCCCC;"
+							label="#{messages['label.autenticacao.senha']}"
+							value="#{autenticacaoBean.autenticacaoBO.senha}"
+							disabled="#{autenticacaoBean.autenticacaoBO.logado}">
+
+						</h:inputSecret></td>
+				</tr>
+
+				<tr>
+
+					<td><h:outputLabel
+							value="#{messages['label.autenticacao.data.nascimento']}"
+							for="data" /></td>
+					<td><rich:calendar id="data" datePattern="dd/MM/yyyy"
+							label="#{messages['label.autenticacao.data.nascimento']}"
+							value="#{autenticacaoBean.autenticacaoBO.dataNascimento}">
+
+
+						</rich:calendar></td>
+				</tr>
+
+				<tr>
+
+					<a4j:outputPanel rendered="#{autenticacaoBean.autenticacaoBO.flagPraticante}">
+						<td><h:outputLabel
+								value="#{messages['label.autenticacao.objetivo']}" /></td>
+						<td><h:selectOneMenu style="width : 88%; text-align:center;"
+								value="#{autenticacaoBean.autenticacaoBO.objetivo}">
+								<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+								<f:selectItems value="#{autenticacaoBean.autenticacaoBO.objetivos}" var="tipo"
+									itemLabel="#{tipo.descricao}" itemValue="#{tipo}" />
+
+							</h:selectOneMenu></td>
+					</a4j:outputPanel>
+
+				</tr>
+
+				<tr>
+
+					<a4j:outputPanel rendered="#{autenticacaoBean.autenticacaoBO.flagPraticante}">
+						<td><h:outputLabel
+								value="#{messages['label.autenticacao.personal']}" /></td>
+						<td><h:inputText disabled="true" style="color:black;"
+								value="#{autenticacaoBean.autenticacaoBO.usuario.praticante.personal.nome}"></h:inputText>
+						</td>
+						<td><h:commandButton image="/resources/img/delete.png"
+								action="#{autenticacaoBean.autenticacaoBO.desabilitarPersonal}">
+
+							</h:commandButton></td>
+
+					</a4j:outputPanel>
+
+				</tr>
+
+				<tr>
+
+					<a4j:outputPanel rendered="#{autenticacaoBean.autenticacaoBO.flagPraticante}">
+						<td><h:outputLabel
+								value="#{messages['label.autenticacao.nutricionista']}" /></td>
+						<td><h:inputText style="color:black;" disabled="true"
+								value="#{autenticacaoBean.autenticacaoBO.usuario.praticante.nutricionista.nome}"></h:inputText>
+						</td>
+						<td><h:commandButton image="/resources/img/delete.png"
+								action="#{autenticacaoBean.autenticacaoBO.desabilitarNutricionista}">
+
+							</h:commandButton></td>
+					</a4j:outputPanel>
+
+				</tr>
+
+
+			</table>
+		</ui:define>
+		<ui:define name="botoes">
+
+
+
+			<h:commandButton id="btnCadastrar"
+				value="#{messages['label.cadastrar']}"
+				action="#{autenticacaoBean.autenticacaoBO.cadastrarUsuario}"
+				rendered="#{!autenticacaoBean.autenticacaoBO.logado}" />
+
+			<h:commandButton id="btnSalvar" value="#{messages['label.salvar']}"
+				action="#{autenticacaoBean.autenticacaoBO.cadastrarUsuario}"
+				rendered="#{autenticacaoBean.autenticacaoBO.logado}" />
+
+			<h:commandButton id="btnVoltar" value="#{messages['label.voltar']}"
+				action="#{autenticacaoBean.autenticacaoBO.voltarFormUsuario}" rendered="true" />
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

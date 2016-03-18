@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<h:head>
+</h:head>
+<h:body>
+
+	<ui:composition template="/template/templateForm.xhtml"> 
+		
+			
+			<ui:define name="titulo">
+				<h1 class="itemForm">#{messages['label.app.name']} -
+					#{messages['label.alimentos']}</h1>
+			</ui:define>
+
+		
+
+			<ui:define name="legenda">
+				<legend>
+					<h:outputText value="#{messages['label.incluir']}"
+						rendered="#{alimentoBean.alimentoBO.operacaoAlimento == 'INCLUIR'}" />
+					<h:outputText value="#{messages['label.editar']}"
+						rendered="#{alimentoBean.alimentoBO.operacaoAlimento == 'EDITAR'}" />
+				</legend>
+			</ui:define>
+
+			<ui:define name="campos">
+
+
+				<table>
+					<tr>
+
+						<td><h:outputLabel
+								value="#{messages['label.autenticacao.nome']}" for="nome" /></td>
+						<td><h:inputText id="nome" style="text-align: center"
+								value="#{alimentoBean.alimentoBO.alimentoSelecionado.nome}">
+							</h:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="#{messages['label.qtd.calorias']}"
+								for="calorias" /></td>
+						<td><h:inputText id="calorias" style="text-align: center"
+								value="#{alimentoBean.alimentoBO.alimentoSelecionado.qtdCaloria}">
+							</h:inputText></td>
+					</tr>
+					<tr>
+
+						<td><h:outputLabel value="#{messages['label.qtd.proteinas']}"
+								for="proteinas" /></td>
+
+						<td><h:inputText id="proteinas" style="text-align: center"
+								value="#{alimentoBean.alimentoBO.alimentoSelecionado.qtdProteina}">
+							</h:inputText></td>
+					</tr>
+
+					<tr>
+
+						<td><h:outputLabel
+								value="#{messages['label.qtd.carboidratos']}" for="carboidratos" /></td>
+						<td><h:inputText id="carboidratos" style="text-align: center"
+								value="#{alimentoBean.alimentoBO.alimentoSelecionado.qtdCarboidrato}">
+							</h:inputText></td>
+					</tr>
+					<tr>
+
+						<td><h:outputLabel value="#{messages['label.qtd.fibras']}"
+								for="fibras" /></td>
+						<td><h:inputText id="fibras" style="text-align: center"
+								value="#{alimentoBean.alimentoBO.alimentoSelecionado.qtdFibra}">
+							</h:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="#{messages['label.qtd.gorduras']}"
+								for="gorduras" /></td>
+						<td><h:inputText id="gorduras" style="text-align: center"
+								value="#{alimentoBean.alimentoBO.alimentoSelecionado.qtdGordura}">
+							</h:inputText></td>
+
+					</tr>
+
+					<tr>
+						<td style="text-align: center;"><h:outputLabel
+								value="#{messages['label.metrica']}" /></td>
+					</tr>
+
+					<tr>
+
+						<td><h:inputText
+								value="#{alimentoBean.alimentoBO.alimentoSelecionado.porcaoUm}"
+								style="text-align: center"></h:inputText></td>
+						<td><h:selectOneMenu style="width : 98%"
+								value="#{alimentoBean.alimentoBO.alimentoSelecionado.tipoPorcaoUm}">
+								<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+								<f:selectItems value="#{alimentoBean.alimentoBO.tiposPorcoes}" var="tipo"
+									itemLabel="#{tipo.descricao}" itemValue="#{tipo}" />
+
+							</h:selectOneMenu></td>
+					</tr>
+
+					<tr>
+
+						<td><h:inputText
+								value="#{alimentoBean.alimentoBO.alimentoSelecionado.porcaoDois}"
+								style="text-align: center"></h:inputText></td>
+						<td><h:selectOneMenu style="width : 98%"
+								value="#{alimentoBean.alimentoBO.alimentoSelecionado.tipoPorcaoDois}"> 
+								<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+								<f:selectItems value="#{alimentoBean.alimentoBO.tiposPorcoes}" var="tipo"
+									itemLabel="#{tipo.descricao}" itemValue="#{tipo}" />
+
+							</h:selectOneMenu></td>
+					</tr>
+
+
+
+
+				</table>
+			</ui:define>
+			<ui:define name="botoes">
+
+
+				<h:commandButton id="btnIncluir" value="#{messages['label.salvar']}"
+					action="#{alimentoBean.alimentoBO.salvarAlimento}" rendered="true" />
+
+				<h:commandButton id="btnVoltar" value="#{messages['label.voltar']}"
+					action="#{alimentoBean.alimentoBO.voltarFormAlimento}" rendered="true" />
+
+			</ui:define>
+		
+	</ui:composition>
+
+</h:body>
+</html>

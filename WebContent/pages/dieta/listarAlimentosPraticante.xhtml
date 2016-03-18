@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<h:head>
+</h:head>
+<h:body>
+
+	<ui:composition template="/template/templateListaSemArgumento.xhtml">
+
+	
+			<ui:define name="titulo">
+				<h1 class="itemForm">#{messages['label.app.name']} -
+					#{messages['label.alimentos']}</h1>
+			</ui:define>
+
+			
+
+
+			<ui:define name="legendaLista">
+				<legend>
+					<h:outputText value="#{messages['label.alimentos']}" />
+				</legend>
+			</ui:define>
+
+			<ui:define name="corpoLista">
+				<div align="center">
+
+					<rich:dataTable id="listagem"
+						value="#{dietaBean.dietaBO.alimentosPraticante}" var="item"
+						style="width: 70%;" rowClasses="even-row, odd-row, active-row">
+
+						<f:facet name="header">
+							<rich:columnGroup>
+								<rich:column></rich:column>
+								<rich:column>#{messages['label.alimento']}</rich:column>
+								<rich:column>#{messages['label.porcao']}</rich:column>
+								<rich:column>#{messages['label.qtd.calorias']}</rich:column>
+								<rich:column>#{messages['label.qtd.proteinas']}</rich:column>
+								<rich:column>#{messages['label.qtd.carboidratos']}</rich:column>
+								<rich:column>#{messages['label.qtd.fibras']}</rich:column>
+								<rich:column>#{messages['label.qtd.gorduras']}</rich:column>
+							</rich:columnGroup>
+						</f:facet>
+
+						<rich:column style="text-align:center; width: 5%;">
+							<h:selectBooleanCheckbox id="sbcSelecionado" class="radio"
+								value="#{item.selecionado}"></h:selectBooleanCheckbox>
+						</rich:column>
+
+						<rich:column style="width: 20%; text-align:center;">
+							<h:outputText value="#{item.alimento.nome}" />
+						</rich:column>
+
+						<rich:column style="width: 20%; text-align:center;">
+							<h:outputText value="#{item.porcao} #{item.tipoPorcao.descricao}" />
+						</rich:column>
+
+						<rich:column style="width: 20%; text-align:center;">
+							<h:outputText value="#{item.valorCaloria()}" />
+						</rich:column>
+
+						<rich:column style="width: 20%; text-align:center;">
+							<h:outputText value="#{item.valorProteina()}" />
+						</rich:column>
+
+						<rich:column style="width: 20%; text-align:center;">
+							<h:outputText value="#{item.valorCarboidrato()}" />
+						</rich:column>
+
+						<rich:column style="width: 20%; text-align:center;">
+							<h:outputText value="#{item.valorFibra()}" />
+						</rich:column>
+
+						<rich:column style="width: 20%; text-align:center;">
+							<h:outputText value="#{item.valorGordura()}" />
+						</rich:column>
+
+					</rich:dataTable>
+				</div>
+			</ui:define>
+
+			<ui:define name="botoes">
+				<h:commandButton id="btnIncluir"
+					value="#{messages['label.incluir']}"
+					action="#{dietaBean.dietaBO.incluirAlimentoPraticante}"
+					rendered="#{dietaBean.dietaBO.usuario.contaLogada == 'NUTRICIONISTA'}" />
+
+				<h:commandButton id="btnEditar" value="#{messages['label.editar']}"
+					action="#{dietaBean.dietaBO.editarAlimentoPraticante}"
+					rendered="#{dietaBean.dietaBO.usuario.contaLogada == 'NUTRICIONISTA'}" />
+
+				<h:commandButton id="btnExcluir"
+					value="#{messages['label.excluir']}"
+					action="#{dietaBean.dietaBO.excluirAlimentoPraticante}"
+					rendered="#{dietaBean.dietaBO.usuario.contaLogada == 'NUTRICIONISTA'}" />
+
+				<h:commandButton id="btnVoltar" value="#{messages['label.voltar']}"
+					action="#{dietaBean.dietaBO.voltarListarAlimentosPraticante}"
+					rendered="true" />
+			</ui:define>
+		
+	</ui:composition>
+</h:body>
+</html>

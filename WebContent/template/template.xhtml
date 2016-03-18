@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>FitTraining</title>
+
+	<div id="estilo">
+		<ui:insert name="estilo" />
+	</div>
+
+
+	<h:outputStylesheet library="css" name="menu.css" />
+
+
+
+</h:head>
+<h:body>
+
+
+	<h:form id="form">
+
+
+		
+
+		<div id="cabecalho">
+			<table style="width: 100%">
+				<tr>
+
+					<td style="width: 80%; text-align: left;"><h:graphicImage
+							name="fittraining.png" library="img" /></td>
+
+
+
+					<td>
+						<div align="center">
+							<h:outputText id="login" style="font-size:13px;"
+								rendered="#{autenticacaoBean.autenticacaoBO.logado}"
+								value="Bem vindo #{autenticacaoBean.autenticacaoBO.nome}"></h:outputText>
+							<br></br>
+							<h:outputText id="loginModulo" style="font-size:11px"
+								rendered="#{autenticacaoBean.autenticacaoBO.logado}"
+								value="Módulo #{autenticacaoBean.autenticacaoBO.usuario.contaLogada.descricao}"></h:outputText>
+						</div>
+					</td>
+
+				</tr>
+			</table>
+
+
+		</div>
+
+		<div id="menu">
+			<ui:include src="/template/menu.xhtml" />
+		</div>
+
+
+		<div id="mensagem">
+			<ui:insert name="mensagem" />
+		</div>
+
+
+		<div id="corpo">
+			<ui:insert name="corpo" />
+		</div>
+
+		<script type="text/javascript">
+		
+			$("input:checkbox").click(
+					function() {
+						if ($(this).is(":checked")) {
+							var group = "input:checkbox[class='"
+									+ $(this).attr("class") + "']";
+							$(group).prop("checked", false);
+							$(this).prop("checked", true);
+						} else {
+							$(this).prop("checked", false);
+						}
+					});
+		</script>
+
+	</h:form>
+</h:body>
+</html>

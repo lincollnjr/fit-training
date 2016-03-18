@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<h:head>
+</h:head>
+<h:body>
+
+	<ui:composition template="/template/templateForm.xhtml">
+		
+			<ui:define name="titulo">
+				<h1 class="itemForm">#{messages['label.app.name']} -
+					#{messages['label.dietas']}</h1>
+			</ui:define>
+
+			
+
+			<ui:define name="legenda">
+				<legend>
+					<h:outputText value="#{messages['label.incluir']}"
+						rendered="#{dietaBean.dietaBO.operacaoDieta == 'INCLUIR'}" />
+					<h:outputText value="#{messages['label.editar']}"
+						rendered="#{dietaBean.dietaBO.operacaoDieta == 'EDITAR'}" />
+				</legend>
+			</ui:define>
+
+			<ui:define name="campos">
+				<table>
+					<tr>
+
+						<td><h:outputLabel
+								value="#{messages['label.autenticacao.nome']}" for="nomeDieta" /></td>
+						<td><h:inputText id="nomeDieta"
+								label="#{messages['label.autenticacao.nome']}"
+								value="#{dietaBean.dietaBO.dietaSelecionado.nome}">
+
+							</h:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="#{messages['label.objetivo']}" /></td>
+						<td><h:selectOneMenu style="width : 98%"
+								value="#{dietaBean.dietaBO.dietaSelecionado.objetivo}">
+								<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+								<f:selectItems value="#{dietaBean.dietaBO.objetivos}" var="tipo"
+									itemLabel="#{tipo.descricao}" itemValue="#{tipo}" />
+
+							</h:selectOneMenu></td>
+
+					</tr>
+
+
+				</table>
+			</ui:define>
+			<ui:define name="botoes">
+
+
+
+				<h:commandButton id="btnIncluir" value="#{messages['label.salvar']}"
+					action="#{dietaBean.dietaBO.salvarDieta}" rendered="true" />
+
+				<h:commandButton id="btnVoltar" value="#{messages['label.voltar']}"
+					action="#{dietaBean.dietaBO.voltarFormDieta}" rendered="true" />
+
+			</ui:define>
+		
+	</ui:composition>
+
+</h:body>
+</html>

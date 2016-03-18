@@ -1,0 +1,18 @@
+.over {			
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.even-row {
+      	background-color: #FCFFFE;
+      }
+      
+      .odd-row {
+      	background-color: #F9F9F9;
+      }
+      
+body{
+	background-color:#F4F4F2;	
+	margin: 0px;
+}

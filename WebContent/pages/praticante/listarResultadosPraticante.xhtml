@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+
+	<ui:composition template="/template/templateListaSemArgumento.xhtml">
+
+
+		<ui:define name="titulo">
+			<h1 class="itemForm">#{messages['label.app.name']} -
+				#{messages['label.resultados']}</h1>
+		</ui:define>
+
+
+		<ui:define name="legendaLista">
+			<legend>
+				<h:outputText value="#{messages['label.resultados']}" />
+			</legend>
+		</ui:define>
+
+		<ui:define name="corpoLista">
+			<rich:dataTable id="listagem" value="#{praticanteBean.praticanteBO.resultados}"
+				var="item" style="width: 70%;"
+				rowClasses="even-row, odd-row, active-row">
+
+				<f:facet name="header">
+					<rich:columnGroup>
+						<rich:column>#{messages['label.data']}</rich:column>
+						<rich:column>#{messages['label.peso']}</rich:column>
+						<rich:column>#{messages['label.altura']}</rich:column>
+						<rich:column>#{messages['label.gordura']}</rich:column>
+					</rich:columnGroup>
+				</f:facet>
+
+
+				<rich:column style="width: 20%; text-align:center;">
+					<h:outputText value="#{item.data}">
+						<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+					</h:outputText>
+				</rich:column>
+
+				<rich:column style="width: 20%; text-align:center;">
+					<h:outputText value="#{item.peso}" />
+				</rich:column>
+
+				<rich:column style="width: 20%; text-align:center;">
+					<h:outputText value="#{item.altura}" />
+				</rich:column>
+
+				<rich:column style="width: 20%; text-align:center;">
+					<h:outputText value="#{item.percentualGordura}" />
+				</rich:column>
+
+			</rich:dataTable>
+
+			<br></br>
+			<br></br>
+
+			<p:chart type="line" model="#{praticanteBean.praticanteBO.graficoPeso}"
+				style="height:70%; width:70%;" rendered="true" />
+
+			<br></br>
+
+			<p:chart type="line" model="#{praticanteBean.praticanteBO.graficoIMC}"
+				style="height:70%; width:70%;" rendered="true" />
+
+			<br></br>
+
+			<p:chart type="line"
+				model="#{praticanteBean.praticanteBO.graficoPercentualGordura}"
+				style="height:70%; width:70%;" rendered="true" />
+
+		</ui:define>
+
+		<ui:define name="botoes">
+
+
+			<h:commandButton id="btnVoltar" value="#{messages['label.voltar']}"
+				action="#{praticanteBean.praticanteBO.voltarListarResultados}" />
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+</html>

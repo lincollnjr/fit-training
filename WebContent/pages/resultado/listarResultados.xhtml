@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+
+	<ui:composition template="/template/templateListaSemArgumento.xhtml">
+
+		<ui:define name="titulo">
+			<h1 class="itemForm">#{messages['label.app.name']} -
+				#{messages['label.resultados']}</h1> 
+		</ui:define>
+
+ 
+
+
+
+
+
+		<ui:define name="legendaLista">
+			<legend>
+				<h:outputText value="#{messages['label.resultados']}" />
+			</legend>
+		</ui:define>
+
+		<ui:define name="corpoLista">
+			<rich:dataTable id="listagem" value="#{resultadoBean.resultadoBO.resultados}" 
+				var="item" style="width: 70%;">
+
+				<f:facet name="header">
+					<rich:columnGroup>
+						<rich:column
+							rendered="#{resultadoBean.resultadoBO.usuario.contaLogada == 'PRATICANTE'}"></rich:column>
+						<rich:column>#{messages['label.data']}</rich:column>
+						<rich:column>#{messages['label.peso']}</rich:column>
+						<rich:column>#{messages['label.altura']}</rich:column>
+						<rich:column>#{messages['label.gordura']}</rich:column>
+					</rich:columnGroup>
+				</f:facet>
+
+				<rich:column
+					rendered="#{resultadoBean.resultadoBO.usuario.contaLogada == 'PRATICANTE'}"
+					style="text-align:center; width: 5%;">
+					<h:selectBooleanCheckbox id="sbcSelecionado" class="radio"
+						value="#{item.selecionado}">
+
+					</h:selectBooleanCheckbox>
+				</rich:column>
+
+				<rich:column style="width: 20%; text-align:center;">
+					<h:outputText value="#{item.data}">
+						<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+					</h:outputText>
+				</rich:column>
+
+				<rich:column style="width: 20%; text-align:center;">
+					<h:outputText value="#{item.peso}" />
+				</rich:column>
+
+				<rich:column style="width: 20%; text-align:center;">
+					<h:outputText value="#{item.altura}" />
+				</rich:column>
+
+				<rich:column style="width: 20%; text-align:center;">
+					<h:outputText value="#{item.percentualGordura}" />
+				</rich:column>
+
+			</rich:dataTable>
+
+			<br></br>
+			<br></br>
+
+
+			<a4j:outputPanel
+				rendered="#{autenticacaoBean.autenticacaoBO.usuario.contaLogada == 'PRATICANTE'}">
+				<p:chart type="line" model="#{resultadoBean.resultadoBO.graficoPeso}"
+					style="height:70%; width:70%;" rendered="true" />
+
+				<br></br>
+
+				<p:chart type="line"
+					model="#{resultadoBean.resultadoBO.graficoIMC}" 
+					style="height:70%; width:70%;" rendered="true" />
+
+				<br></br>
+
+				<p:chart type="line"
+					model="#{resultadoBean.resultadoBO.graficoPercentualGordura}"
+					style="height:70%; width:70%;" rendered="true" />
+
+			</a4j:outputPanel>
+
+
+
+
+
+		</ui:define>
+
+		<ui:define name="botoes">
+			<h:commandButton id="btnIncluir" value="#{messages['label.incluir']}"
+				action="#{resultadoBean.resultadoBO.incluirResultado}"
+				/>
+
+			<h:commandButton id="btnEditar" value="#{messages['label.editar']}"
+				action="#{resultadoBean.resultadoBO.editarResultado}"
+				 />
+
+			<h:commandButton id="btnExcluir" value="#{messages['label.excluir']}"
+				action="#{resultadoBean.resultadoBO.excluirResultado}"
+				 />
+
+			<h:commandButton id="btnVoltarPraticante"
+				value="#{messages['label.voltar']}"
+				action="#{resultadoBean.resultadoBO.voltarListarResultados}"
+				/>
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

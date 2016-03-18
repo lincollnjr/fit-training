@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<h:head>
+</h:head>
+<h:body>
+
+
+	<ui:composition template="/template/templateForm.xhtml">
+	
+			<ui:define name="titulo">
+				<h1 class="itemForm">#{messages['label.app.name']} -
+					#{messages['label.autenticacao.praticante']}</h1>
+			</ui:define>
+
+			
+
+			<ui:define name="legenda">
+				<legend>
+					<h:outputText value="#{messages['label.atribuir.dieta']}" />
+
+				</legend>
+			</ui:define>
+
+			<ui:define name="campos">
+
+				<div align="left">
+					<h:outputLabel style="text-align:left; font-size:14px;"
+						value="Praticante: #{praticanteBean.praticanteBO.praticanteSelecionado.nome}">
+					</h:outputLabel>
+				</div>
+
+
+				<fieldset>
+
+					<legend align="left">
+						<h:outputText value="#{messages['label.consulta.nome']}"></h:outputText>
+					</legend>
+					<table>
+						<tr>
+							<td><h:outputLabel for="nomeFiltro"
+									value="#{messages['label.autenticacao.nome']}: " /> <h:inputText
+									id="nomeFiltro" value="#{praticanteBean.praticanteBO.argumentoDietaNome}"
+									label="#{messages['label.autenticacao.nome']}">
+								</h:inputText></td>
+							<td><h:commandButton id="btnPesquisaNome"
+									value="#{messages['label.consultar']}"
+									style="margin-top : 0px;"
+									action="#{praticanteBean.praticanteBO.consultarDietaNome}" /></td>
+						</tr>
+					</table>
+				</fieldset>
+				<br></br>
+				<br></br>
+
+				<fieldset>
+					<legend align="left">
+						<h:outputText value="#{messages['label.dietas']}"></h:outputText>
+					</legend>
+					<rich:dataTable id="listagem" value="#{praticanteBean.praticanteBO.dietas}"
+						var="item" style="width: 50%;"
+						rowClasses="even-row, odd-row, active-row">
+
+						<f:facet name="header">
+							<rich:columnGroup>
+								<rich:column></rich:column>
+								<rich:column>#{messages['label.autenticacao.nome']}</rich:column>
+								<rich:column>#{messages['label.objetivo']}</rich:column>
+							</rich:columnGroup>
+						</f:facet>
+
+						<rich:column style="text-align:center; width: 5%;">
+							<h:selectBooleanCheckbox id="sbcSelecionado" class="radio"
+								value="#{item.selecionado}"></h:selectBooleanCheckbox>
+						</rich:column>
+
+						<rich:column style="width: 20%; text-align:center;">
+							<h:outputText value="#{item.nome}" />
+						</rich:column>
+
+						<rich:column style="width: 20%; text-align:center;"
+							styleClass="over">
+							<h:outputText value="#{item.objetivo.descricao}" />
+						</rich:column>
+
+					</rich:dataTable>
+				</fieldset>
+
+				<br></br>
+				<br></br>
+				<table>
+
+					<tr>
+						<td><h:outputLabel value="#{messages['label.data.inicio']}" /></td>
+						<td><rich:calendar
+								value="#{praticanteBean.praticanteBO.dietaPraticanteSelecionado.dataInicio}" datePattern="dd/MM/yyyy">
+							</rich:calendar></td>
+
+					</tr>
+					<tr>
+						<td><h:outputLabel value="#{messages['label.data.fim']}" /></td>
+						<td><rich:calendar
+								value="#{praticanteBean.praticanteBO.dietaPraticanteSelecionado.dataFim}" datePattern="dd/MM/yyyy">
+							</rich:calendar></td>
+
+					</tr>
+
+				</table>
+			</ui:define>
+			<ui:define name="botoes">
+
+				<h:commandButton id="btnSalvar" value="#{messages['label.salvar']}"
+					action="#{praticanteBean.praticanteBO.salvarDietaPraticante}" />
+
+				<h:commandButton id="btnVoltar" value="#{messages['label.voltar']}"
+					action="#{praticanteBean.praticanteBO.voltarFormPraticanteDieta}"
+					rendered="true" />
+
+			</ui:define>
+
+	</ui:composition>
+
+</h:body>
+</html>

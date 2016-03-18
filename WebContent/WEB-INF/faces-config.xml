@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
+	<application>
+		<resource-bundle>
+			<base-name>recursos.messages</base-name>
+			<var>messages</var>
+		</resource-bundle>
+	</application>
+
+	<navigation-rule>
+		<display-name>Todas as visões</display-name>
+		<from-view-id>*</from-view-id>
+		<!-- Erro -->
+		<navigation-case>
+			<from-outcome>erroAcesso</from-outcome>
+			<to-view-id>/pages/erro/erroAcesso.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>erroAcessoLogout</from-outcome>
+			<to-view-id>/pages/erro/erroAcessoLogout.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+
+		<!-- Usuario -->
+		<navigation-case>
+			<from-outcome>loginUsuario</from-outcome>
+			<to-view-id>/pages/usuario/loginUsuario.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>formUsuario</from-outcome>
+			<to-view-id>/pages/usuario/formUsuario.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Home -->
+		<navigation-case>
+			<from-outcome>home</from-outcome>
+			<to-view-id>/pages/home/home.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Treino -->
+		<navigation-case>
+			<from-outcome>listarTreinos</from-outcome>
+			<to-view-id>/pages/treino/listarTreinos.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>formTreino</from-outcome>
+			<to-view-id>/pages/treino/formTreino.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>listarExerciciosPraticante</from-outcome>
+			<to-view-id>/pages/treino/listarExerciciosPraticante.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>formExercicioPraticante</from-outcome>
+			<to-view-id>/pages/treino/formExercicioPraticante.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Resultado -->
+		<navigation-case>
+			<from-outcome>listarResultados</from-outcome>
+			<to-view-id>/pages/resultado/listarResultados.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>formResultados</from-outcome>
+			<to-view-id>/pages/resultado/formResultados.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Praticante -->
+		<navigation-case>
+			<from-outcome>listarPraticantes</from-outcome>
+			<to-view-id>/pages/praticante/listarPraticantes.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>formPraticanteTreino</from-outcome>
+			<to-view-id>/pages/praticante/formPraticanteTreino.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>formPraticanteDieta</from-outcome>
+			<to-view-id>/pages/praticante/formPraticanteDieta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>formCadastrarPraticante</from-outcome>
+			<to-view-id>/pages/praticante/formCadastrarPraticante.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>listarResultadosPraticante</from-outcome>
+			<to-view-id>/pages/praticante/listarResultadosPraticante.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>listarDietasPraticante</from-outcome>
+			<to-view-id>/pages/praticante/listarDietasPraticante.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>listarTreinosPraticante</from-outcome>
+			<to-view-id>/pages/praticante/listarTreinosPraticante.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Exercicio -->
+		<navigation-case>
+			<from-outcome>listarExercicios</from-outcome>
+			<to-view-id>/pages/exercicio/listarExercicios.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>formExercicio</from-outcome>
+			<to-view-id>/pages/exercicio/formExercicio.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Dieta -->
+		<navigation-case>
+			<from-outcome>listarRefeicoesPraticante</from-outcome>
+			<to-view-id>/pages/dieta/listarRefeicoesPraticante.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>listarDietas</from-outcome>
+			<to-view-id>/pages/dieta/listarDietas.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>listarAlimentosPraticante</from-outcome>
+			<to-view-id>/pages/dieta/listarAlimentosPraticante.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>formRefeicaoPraticante</from-outcome>
+			<to-view-id>/pages/dieta/formRefeicaoPraticante.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>formDieta</from-outcome>
+			<to-view-id>/pages/dieta/formDieta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>formAlimentoPraticante</from-outcome>
+			<to-view-id>/pages/dieta/formAlimentoPraticante.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Alimento -->
+		<navigation-case>
+			<from-outcome>listarAlimentos</from-outcome>
+			<to-view-id>/pages/alimento/listarAlimentos.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>formAlimento</from-outcome>
+			<to-view-id>/pages/alimento/formAlimento.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+	</navigation-rule>
+
+</faces-config>
+
